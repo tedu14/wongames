@@ -32,7 +32,7 @@ describe('<Heading />', () => {
         lineLeft: true
       })
     ).toHaveStyle({
-      'border-left': `0.7rem solid ${theme.colors.secondary}`
+      'border-left': `0.7rem solid ${theme.colors.primary}`
     })
   })
 
@@ -44,5 +44,38 @@ describe('<Heading />', () => {
     ).toHaveStyleRule('border-bottom', `0.5rem solid ${theme.colors.primary}`, {
       modifier: '::after'
     })
+  })
+
+  it('should render a heading with a small size', () => {
+    const wrapper = factory({
+      size: 'small'
+    })
+
+    expect(wrapper).toHaveStyle({
+      'font-size': `${theme.font.sizes.medium}`
+    })
+
+    expect(wrapper).toHaveStyleRule('width', '3rem', {
+      modifier: '::after'
+    })
+  })
+
+  it('should render a Heading with a secondary line color', () => {
+    const wrapper = factory({
+      lineLeft: true,
+      lineBottom: true,
+      lineColor: 'secondary'
+    })
+
+    expect(wrapper).toHaveStyle({
+      'border-left': `0.7rem solid ${theme.colors.secondary}`
+    })
+    expect(wrapper).toHaveStyleRule(
+      'border-bottom',
+      `0.5rem solid ${theme.colors.secondary}`,
+      {
+        modifier: '::after'
+      }
+    )
   })
 })
